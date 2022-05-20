@@ -58,6 +58,7 @@ if (isset($_POST['telephoneNo'])) {$telephoneNo = $_POST['telephoneNo'];} else {
 if (isset($_POST['mobilePhoneNo'])) {$mobilePhoneNo = $_POST['mobilePhoneNo'];} else { $mobilePhoneNo = "";}
 if (isset($_POST['officePhoneNo'])) {$officePhoneNo = $_POST['officePhoneNo'];} else { $officePhoneNo = "";}
 if (isset($_POST['fulltimeCareer'])) {$fulltimeCareer = $_POST['fulltimeCareer'];} else { $fulltimeCareer = "";}
+if (isset($_POST['speciality '])) {$speciality  = $_POST['speciality '];} else { $speciality  = "";}
 if (isset($_POST['workStartingDate'])) {$workStartingDate = $_POST['workStartingDate'];} else { $workStartingDate = "";}
 if (isset($_POST['workResignedDate'])) {$workResignedDate = $_POST['workResignedDate'];} else { $workResignedDate = "";}
 if (isset($_POST['email'])) {$email = $_POST['email'];} else { $email = "";}
@@ -89,15 +90,14 @@ if (isset($_POST['recordFile5'])) {$recordFile5 = $_POST['recordFile5'];} else {
 if (isset($_POST['recordFile6'])) {$recordFile6 = $_POST['recordFile6'];} else { $recordFile6 = "";}
 if (isset($_POST['recordFile7'])) {$recordFile7 = $_POST['recordFile7'];} else { $recordFile7 = "";}
 
-$recordFile="";
-if($recordFile1!=""){$recordFile=$recordFile."".$recordFile1;}
-if($recordFile2!=""){$recordFile=$recordFile.",".$recordFile2;}
-if($recordFile3!=""){$recordFile=$recordFile.",".$recordFile3;}
-if($recordFile4!=""){$recordFile=$recordFile.",".$recordFile4;}
-if($recordFile5!=""){$recordFile=$recordFile.",".$recordFile5;}
-if($recordFile6!=""){$recordFile=$recordFile.",".$recordFile6;}
-if($recordFile7!=""){$recordFile=$recordFile.",".$recordFile7;}
-
+$recordFile = "";
+if ($recordFile1 != "") {$recordFile = $recordFile . "" . $recordFile1;}
+if ($recordFile2 != "") {$recordFile = $recordFile . "," . $recordFile2;}
+if ($recordFile3 != "") {$recordFile = $recordFile . "," . $recordFile3;}
+if ($recordFile4 != "") {$recordFile = $recordFile . "," . $recordFile4;}
+if ($recordFile5 != "") {$recordFile = $recordFile . "," . $recordFile5;}
+if ($recordFile6 != "") {$recordFile = $recordFile . "," . $recordFile6;}
+if ($recordFile7 != "") {$recordFile = $recordFile . "," . $recordFile7;}
 
 //echo $activity;
 
@@ -139,11 +139,11 @@ if ($token == $TokenCheck) {
     $privacyNotice = "";
     $noticeoOnIndirectCollection = "";
     $formatsOfTheDataStored = "";
-	$recordsOfDataSubjectRightsUsed="";
-	$transferOfDataToDataProcessor="";
-	$categoriesOfDataTransferredToDataProcessor="";
-	$namesOfTheDataProcessor="";
-	$formatsofTransferToDataProcessor="";
+    $recordsOfDataSubjectRightsUsed = "";
+    $transferOfDataToDataProcessor = "";
+    $categoriesOfDataTransferredToDataProcessor = "";
+    $namesOfTheDataProcessor = "";
+    $formatsofTransferToDataProcessor = "";
 
     if ($formGoolgeForm == 1) {
         $directIndirectDataSubjects = "Direct";
@@ -204,7 +204,7 @@ if ($token == $TokenCheck) {
 		'" . $recordDateUpdate . "',
 		'" . $agree . "',
 		'" . $name . "',
-		'" . $surName . "',		
+		'" . $surName . "',
 		'" . $activity . "',
 		'" . $activityActivityName . "',
 		'" . $activityDocument . "',
@@ -233,9 +233,8 @@ if ($token == $TokenCheck) {
 		'" . $recordDateUpdate . "'
 		 )";
 
-	
-     $query = $conn->query($sql);
-     if (!$query) {echo mysqli_error();}
+    $query = $conn->query($sql);
+    if (!$query) {echo mysqli_error();}
 
 //Insert PDPA
     $table = "pdpaF";
@@ -280,6 +279,7 @@ if ($token == $TokenCheck) {
 			mobilePhoneNo,
 			officePhoneNo,
 			fulltimeCareer,
+			speciality,
 			workStartingDate,
 			workResignedDate,
 			email,
@@ -347,6 +347,7 @@ if ($token == $TokenCheck) {
 		'" . $mobilePhoneNo . "',
 		'" . $officePhoneNo . "',
 		'" . $fulltimeCareer . "',
+		'" . $speciality  . "',
 		'" . $workStartingDate . "',
 		'" . $workResignedDate . "',
 		'" . $email . "',
@@ -373,8 +374,6 @@ if ($token == $TokenCheck) {
 		'" . $recordFile . "',
 		'" . $recordDateUpdate . "'
 		 )";
-
-
 
     $query = $conn->query($sql);
     if (!$query) {echo mysqli_error();}
