@@ -13,6 +13,7 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 //$_POST = json_decode(file_get_contents('php://input'), true);
 //ROPA Data
 if (isset($_POST['token'])) {$token = $_POST['token'];} else { $token = "";}
+if (isset($_POST['uuid'])) {$uuid = $_POST['uuid'];} else { $uuid = "";}
 if (isset($_POST['activity'])) {$activity = $_POST['activity'];} else { $activity = "";}
 if (isset($_POST['agree'])) {$agree = $_POST['agree'];} else { $agree = "";}
 if (isset($_POST['formGoolgeForm'])) {$formGoolgeForm = $_POST['formGoolgeForm'];} else { $formGoolgeForm = 0;}
@@ -58,7 +59,7 @@ if (isset($_POST['telephoneNo'])) {$telephoneNo = $_POST['telephoneNo'];} else {
 if (isset($_POST['mobilePhoneNo'])) {$mobilePhoneNo = $_POST['mobilePhoneNo'];} else { $mobilePhoneNo = "";}
 if (isset($_POST['officePhoneNo'])) {$officePhoneNo = $_POST['officePhoneNo'];} else { $officePhoneNo = "";}
 if (isset($_POST['fulltimeCareer'])) {$fulltimeCareer = $_POST['fulltimeCareer'];} else { $fulltimeCareer = "";}
-if (isset($_POST['speciality '])) {$speciality  = $_POST['speciality '];} else { $speciality  = "";}
+if (isset($_POST['speciality'])) {$speciality = $_POST['speciality'];} else { $speciality = "";}
 if (isset($_POST['workStartingDate'])) {$workStartingDate = $_POST['workStartingDate'];} else { $workStartingDate = "";}
 if (isset($_POST['workResignedDate'])) {$workResignedDate = $_POST['workResignedDate'];} else { $workResignedDate = "";}
 if (isset($_POST['email'])) {$email = $_POST['email'];} else { $email = "";}
@@ -102,6 +103,8 @@ if ($recordFile7 != "") {$recordFile = $recordFile . "," . $recordFile7;}
 //echo $activity;
 
 $TokenCheck = "FLwwgnYyp7bTKyMLzSfcU5DWtP3Sn7cL";
+
+
 if ($token == $TokenCheck) {
     $date = date('Y-m-d');
     $recordDateUpdate = date('Y-m-d H:i:s');
@@ -167,6 +170,7 @@ if ($token == $TokenCheck) {
     $sql = "insert into $table
 		(
 			ropaId,
+			uuid,
 			dateTime,
 			agree,
 			name,
@@ -201,6 +205,7 @@ if ($token == $TokenCheck) {
 		VALUES
 		(
 		'" . $ropaId . "',
+		'" . $uuid . "',
 		'" . $recordDateUpdate . "',
 		'" . $agree . "',
 		'" . $name . "',
@@ -241,6 +246,7 @@ if ($token == $TokenCheck) {
     $sql = "insert into $table
 		(
 			ropaId,
+			uuid,
 			descriptionManual,
 			dateTime,
 			dateMeeting,
@@ -309,6 +315,7 @@ if ($token == $TokenCheck) {
 		VALUES
 		(
 		'" . $ropaId . "',
+		'" . $uuid . "',
 		'" . $descriptionManual . "',
 		'" . $recordDateUpdate . "',
 		'" . $dateMeeting . "',
@@ -347,7 +354,7 @@ if ($token == $TokenCheck) {
 		'" . $mobilePhoneNo . "',
 		'" . $officePhoneNo . "',
 		'" . $fulltimeCareer . "',
-		'" . $speciality  . "',
+		'" . $speciality . "',
 		'" . $workStartingDate . "',
 		'" . $workResignedDate . "',
 		'" . $email . "',

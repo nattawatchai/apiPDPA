@@ -196,6 +196,18 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "Rep No";
 $row_columns['width'] = array("wpx" => 100);
 array_push($columns, $row_columns);
+
+//33
+$row_columns['title'] = "Title Thai";
+$row_columns['width'] = array("wpx" => 100);
+array_push($columns, $row_columns);
+
+//33
+$row_columns['title'] = "Title Eng";
+$row_columns['width'] = array("wpx" => 100);
+array_push($columns, $row_columns);
+
+
 //33
 $row_columns['title'] = "Name Thai";
 $row_columns['width'] = array("wpx" => 200);
@@ -328,6 +340,12 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "Full time career";
 $row_columns['width'] = array("wpx" => 200);
 array_push($columns, $row_columns);
+
+//41
+$row_columns['title'] = "Speciality";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
 //41
 $row_columns['title'] = "Work Position";
 $row_columns['width'] = array("wpx" => 200);
@@ -550,6 +568,16 @@ array_push($value, $row_value);
 //
 $row_value['value'] = "ผู้แทนขาย";
 array_push($value, $row_value);
+
+//
+$row_value['value'] = "คำนำหน้า (ภาษาไทย)";
+array_push($value, $row_value);
+
+//
+$row_value['value'] = "คำนำหน้า (ภาษาอังกฤษ)";
+array_push($value, $row_value);
+
+
 //
 $row_value['value'] = "ชื่อ (ภาษาไทย)";
 array_push($value, $row_value);
@@ -647,6 +675,11 @@ array_push($value, $row_value);
 //41
 $row_value['value'] = "อาชีพ";
 array_push($value, $row_value);
+
+//41
+$row_value['value'] = "ความเชี่ยวชาญเฉพาะทาง";
+array_push($value, $row_value);
+
 //41
 $row_value['value'] = "ตำแหน่ง";
 array_push($value, $row_value);
@@ -841,6 +874,16 @@ array_push($value, $row_value);
 //
 $row_value['value'] = $row['repNo'];
 array_push($value, $row_value);
+
+//
+$row_value['value'] = $row['titleThai'];
+array_push($value, $row_value);
+
+//
+$row_value['value'] = $row['titleEng'];
+array_push($value, $row_value);
+
+
 //
 $row_value['value'] = $row['nameThai'];
 array_push($value, $row_value);
@@ -938,6 +981,12 @@ array_push($value, $row_value);
 //41
 $row_value['value'] = $row['fulltimeCareer'];
 array_push($value, $row_value);
+
+//41
+$row_value['value'] = $row['speciality'];
+array_push($value, $row_value);
+
+
 //41
 $row_value['value'] = $row['workPosition'];
 array_push($value, $row_value);

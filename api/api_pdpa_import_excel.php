@@ -47,6 +47,9 @@ if (is_array($Excel)) {
             $descriptionManual = "";
             $dateMeeting = "";
             $repNo = "";
+            $titleThai="";
+            $titleEng="";
+            $speciality="";
             $nameTH = "";
             $surNameTH = "";
             $nameENG = "";
@@ -130,6 +133,11 @@ if (is_array($Excel)) {
                 if (trim($key) == "Description Manual") {$descriptionManual = $value;} //1
                 if (trim($key) == "Date Meeting") {$dateMeeting = $value;} //1
                 if (trim($key) == "Rep No") {$repNo = $value;} //1
+
+                if (trim($key) == "Title Thai") {$titleThai = $value;} //1
+                if (trim($key) == "Title Eng") {$titleEng = $value;} //1
+                if (trim($key) == "Speciality") {$speciality = $value;} //1
+
                 if (trim($key) == "Name Thai") {$nameTH = $value;} //1
                 if (trim($key) == "Surname Thai") {$surNameTH = $value;} //1
                 if (trim($key) == "Name Eng") {$nameENG = $value;} //1
@@ -332,6 +340,8 @@ if (is_array($Excel)) {
                                    descriptionManual,
                                    dateMeeting,
                                    repNo,
+                                   titleThai,
+                                   titleEng,
                                    nameThai,
                                    surNameThai,
                                    nameEng,
@@ -364,6 +374,7 @@ if (is_array($Excel)) {
                                    mobilePhoneNo,
                                    officePhoneNo,
                                    fulltimeCareer,
+                                   speciality,
                                    workPosition,
                                    workStartingDate,
                                    workResignedDate,
@@ -399,6 +410,8 @@ if (is_array($Excel)) {
                                 '" . $descriptionManual . "',
                                 '" . $dateMeeting . "',
                                 '" . $repNo . "',
+                                '" . $titleThai . "',
+                                '" . $titleEng . "',
                                 '" . $nameTH . "',
                                 '" . $surNameTH . "',
                                 '" . $nameENG . "',
@@ -431,6 +444,7 @@ if (is_array($Excel)) {
                                 '" . $mobilePhoneNo . "',
                                 '" . $officePhoneNo . "',
                                 '" . $fulltimeCareer . "',
+                                '" . $speciality . "',
                                 '" . $workPosition . "',
                                 '" . $workStartingDate . "',
                                 '" . $workResignedDate . "',
