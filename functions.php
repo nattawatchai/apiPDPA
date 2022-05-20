@@ -177,21 +177,21 @@ $TokenUUID="6b88f0fe-00cf-49a5-98ff-603ff1c5eaae";
 		$YY = date('y');
 		$PrefixSum=$prefix.$YY;
 	
-		$sql="select ropaId as prefix from pdpa where ropaId like '$PrefixSum%' order by ropaId desc limit 1";
+		$sql="select ropaId as prefix from ropaF where ropaId like '$PrefixSum%' order by ropaId desc limit 1";
 		$query = $conn->query ($sql);
 		if(!$query){echo mysqli_error();}
 		$nrow=mysqli_num_rows($query);
-			if($nrow){
+			if($nrow==1){
 				$row= mysqli_fetch_array($query);
 				$curid=substr($row['prefix'],strlen($PrefixSum),strlen($row['prefix'])-strlen($PrefixSum));
 				$curid=$curid+1;
 				
 				$newid=$PrefixSum;
-				for ($x = 1; $x <= 10-(strlen($PrefixSum)+strlen($curid)); $x++) {$newid=$newid."0";}
+				for ($x = 1; $x <= 5 -strlen($curid); $x++) {$newid=$newid."0";}
 				$newid=$newid.$curid;	
 			}else{	
 				$newid=$PrefixSum;
-				for ($x = 1; $x < 10-strlen($PrefixSum); $x++) {$newid=$newid."0";}
+				for ($x = 1; $x < 5; $x++) {$newid=$newid."0";}
 				$newid=$newid."1";
 
 			}
@@ -205,19 +205,27 @@ $TokenUUID="6b88f0fe-00cf-49a5-98ff-603ff1c5eaae";
 	if (!function_exists('getActivity')) {
 		function getActivity($conn,$id){
 	
-			$sql="select * from activity where id='$id'";
+			$sql="select * from activityF where id='$id'";
 			$query = $conn->query ($sql);
 			if(!$query){echo mysqli_error();}
 			$nrow=mysqli_num_rows($query);
 			$array=array();
 				if($nrow){
 					$row= mysqli_fetch_array($query);
-					$arrayname['department'] = $row['department'];
+					$arrayname['typeInput'] = $row['typeInput'];
+					$arrayname['document'] = $row['document'];
+					$arrayname['personsWithAuthorizedAccess'] = $row['personsWithAuthorizedAccess'];					
 					$arrayname['activityName'] = $row['activityName'];
 					$arrayname['objectives'] = $row['objectives'];
-					$arrayname['duration'] = $row['duration'];
-					$arrayname['durationMonth'] = $row['durationMonth'];
+					$arrayname['durationOfDataStorage'] = $row['durationOfDataStorage'];
+					$arrayname['durationOfDataStorageMonth'] = $row['durationOfDataStorageMonth'];
 					$arrayname['contactPerson'] = $row['contactPerson'];
+					$arrayname['severity'] = $row['severity'];
+					$arrayname['probability'] = $row['probability'];
+					$arrayname['priorityRiskNumber'] = $row['priorityRiskNumber'];
+					$arrayname['legalBasis'] = $row['legalBasis'];
+					$arrayname['securityMeasurement'] = $row['securityMeasurement'];
+					$arrayname['linkGoogleform'] = $row['linkGoogleform'];
 
 					array_push($array, $arrayname);
 				}
@@ -228,7 +236,25 @@ $TokenUUID="6b88f0fe-00cf-49a5-98ff-603ff1c5eaae";
 
 
 
-
+		if (!function_exists('getUserAccess')) {
+			function getUserAccess($conn,$user){
+		
+				$sql="select * from user where Email='$user'";
+				$query = $conn->query ($sql);
+				if(!$query){echo mysqli_error();}
+				$nrow=mysqli_num_rows($query);
+				$array=array();
+					if($nrow){
+						$row= mysqli_fetch_array($query);
+						$arrayname['Access'] = $row['Access'];	
+						array_push($array, $arrayname);
+					}
+				///////////
+		
+				return $array;
+			}}
+	
+	
 
 
 

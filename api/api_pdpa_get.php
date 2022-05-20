@@ -12,80 +12,125 @@ header("Access-Control-Allow-Headers:X-Auth-Token, X-Requested-With, Content-Typ
 header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
+//$_GET = json_decode(file_get_contents('php://input'), true);
+
+//print_r($_GET);
 
 $TokenDeCode = trim($_GET['TokenDeCode']);
 $TokenDeCode=jwtDecode($TokenDeCode);
 $TokenDeCode=json_decode($TokenDeCode,true);
+
 if($TokenDeCode['statusToken']=="no"){
-echo json_encode($TokenDeCode);
+    die("Token ไม่ถูกต้อง");
 }
 
 
-$table="pdpa";
+if (isset($_GET['page'])) {$page = $_GET['page'];} else { $page = 1;}
+if (isset($_GET['limit'])) {$limit = $_GET['limit'];} else { $limit = 10;}
+if (isset($_GET['searchName'])) {$searchName = $_GET['searchName'];} else { $searchName = '';}
+if (isset($_GET['searchROPA'])) {$searchROPA = $_GET['searchROPA'];} else { $searchROPA = '';}
+if (isset($_GET['searchActivity'])) {$searchActivity = $_GET['searchActivity'];} else { $searchActivity = '';}
+if (isset($_GET['dateStart'])) {$dateStart = $_GET['dateStart'];} else { $dateStart = '';}
+if (isset($_GET['dateEnd'])) {$dateEnd = $_GET['dateEnd'];} else { $dateEnd = '';}
+if (isset($_GET['userEmail'])) {$userEmail = $_GET['userEmail'];} else { $userEmail = '';}
+$userEmail=deCode_Local($userEmail);
+
+$userAccess = getUserAccess($conn,$userEmail);
+$userAccess = $userAccess[0]['Access'];
+// $access = "";
+// if($userAccess[0]['Access']!==""){
+// $userAccess_array = explode(',', $userAccess[0]['Access']);
+// $access = $access." and (";
+// $i=1;
+//  foreach( $userAccess_array as $key=>$value) {
+//      $access=$access. " ropaId like '%$value%'";
+//      if(count($userAccess_array)!=$i){
+//      $access=$access. " or ";
+//     }
+//      $i=$i+1;
+//  }
+//  $access = $access." )";
+// }
+
+
+$pageLimit=($page-1)*$limit;
+$limit=$limit;
+$no=$pageLimit+1;
+
+$totalRow=0;
+$totalPage=0;
+
+$table="ropaF";
+$search=" (date(dateTime)  BETWEEN '$dateStart' and '$dateEnd') and  ";
+$search= $search ." name like '%$searchName%' and activityName like '%$searchActivity%' and ropaId like'%$searchROPA%' ";
+if($userAccess!=""){
+  $search= $search ." and (personsWithAuthorizedAccess like '%$userAccess%' or personsWithAuthorizedAccess like '%ALL%') ";
+}
+
+
+//personsWithAuthorizedAccess
+// $sql="select id from $table where $search $access";
+$sql="select id from $table where $search";
+
+$query = $conn->query ($sql);
+$totalRow=mysqli_num_rows($query);
+$totalPage=ceil($totalRow/$limit);
 
 
 
-$sql="select *,date(timeStamp) as date,time(timeStamp) as time
-from $table 
-order by Timestamp desc";
+// $sql="select *,date(timeStamp) as date,time(timeStamp) as time
+// from $table 
+// order by Timestamp desc";
+
+// $sql="select *,time(timeStamp) as time from $table data
+// join (select id as idpage from $table where $search order by date desc,ropaId desc limit $pageLimit,$limit ) as page
+// on data.id=page.idpage
+// where $search $access";
+$sql="select *,date(dateTime) as date,time(dateTime) as time from $table data
+join (select id as idpage from $table where $search order by dateTime desc,ropaId desc limit $pageLimit,$limit ) as page
+on data.id=page.idpage
+where $search
+";
 
 $query = $conn->query ($sql);
 $return_arr = array();
+
 while($row= mysqli_fetch_array($query)){
 
 	
-$remark="";	
-$row_array['timeStamp'] = $row['timeStamp'];
+$row_array['no'] = $no;
+$no=$no+1;
+
+
 $row_array['date'] = $row['date'];
 $row_array['id'] = $row['id'];	
 $row_array['ropaId'] = $row['ropaId'];	
 $row_array['name']=$row['name'];
-$row_array['nameCompany']=$row['nameCompany'];	
-$row_array['address']=$row['address'];	
-$row_array['phone']=$row['phone'];	
-$row_array['tax']=$row['tax'];	
-$row_array['objective']=$row['objective'];
-$row_array['timeLine']=$row['timeLine'];
-$row_array['timeExp']=$row['timeExp'];
-	
-$row_array['shipName']=$row['shipName'];	
-$row_array['shipAddress']=$row['shipAddress'];	
-$row_array['shipPhone']=$row['shipPhone'];	
-$row_array['agree']=$row['agree'];	
-$row_array['remarkNote']=$row['remark'];	
-	
-	
+$row_array['activityName']=$row['activityName'];	
+$row_array['legalBasis']=$row['legalBasis'];	
+$row_array['contactPerson']=$row['contactPerson'];
 
-$remark="วันเวลา : ".$row['timeStamp']."\n";
-$remark.="ชื่อ : ".$row['name']."\n";	
 	
-if($row['objective']=="เอกสารแสดงความยินยอมสำหรับการซื้อขาย"){	
-if($row['nameCompany']!=""){$remark.="ชื่อบริษัท : ".$row['nameCompany']."\n";}	
-if($row['address']!=""){$remark.="ที่อยู่ : ".$row['address']."\n";}
-if($row['phone']!=""){$remark.="เบอร์โทร : ".$row['phone']."\n";}	
-if($row['tax']!=""){$remark.="เลขที่ผู้เสียภาษี : ".$row['tax']."\n";}	
-if($row['shipName']!=""){$remark.="ชื่อผู้รับสินค้า : ".$row['shipName']."\n";}	
-if($row['shipAddress']!=""){$remark.="ที่อยู่ผู้รับสินค้า : ".$row['shipAddress']."\n";}	
-if($row['shipPhone']!=""){$remark.="เบอร์โทรผู้รับสินค้า : ".$row['shipPhone']."\n";}		
-if($row['remark']!=""){$remark.="หมายเหตุ : ".$row['remark']."\n";}	
-}
 	
-if($row['objective']=="เอกสารแสดงความยินยอมสำหรับการประชุม"){	
-if($row['nameCompany']!=""){$remark.="ชื่อบริษัท : ".$row['nameCompany']."\n";}	
-if($row['address']!=""){$remark.="ที่อยู่ : ".$row['address']."\n";}
-if($row['phone']!=""){$remark.="เบอร์โทร : ".$row['phone']."\n";}	
-if($row['tax']!=""){$remark.="เลขที่ผู้เสียภาษี : ".$row['tax']."\n";}	
-if($row['remark']!=""){$remark.="หมายเหตุ : ".$row['remark']."\n";}		
-}	
+$remark="";	
+
+$remark.="Full Name : ".$row['name']."\n";	
+$remark.="Date Time : ".$row['dateTime']."\n";	
+$remark.="Agree : ".$row['agree']."\n";	
+$remark.="Formats Of The Direct Collection : ".$row['formatsOfTheDirectCollection']."\n";	
+$remark.="Duration Of Data Storage : ".$row['durationOfDataStorage']."\n";	
+$remark.="Duration Of Data Storage Expiration Date : ".$row['durationOfDataStorageExpDate']."\n";	
+$remark.="Contact Person : ".$row['contactPerson']."\n";	
+
 $row_array['remark']=$remark;	
 	
 array_push($return_arr,$row_array);	
-//$row_array = array();
 }
 
 $err=array();
 $err["statusToken"]="ok";
 $err["msg"]="Token completed";
+$err['pagination']=["totalRow"=>$totalRow, "totalPage"=>$totalPage, "currentPage"=>$page];
 $err["data"]=$return_arr;	
 echo  json_encode($err);	
 

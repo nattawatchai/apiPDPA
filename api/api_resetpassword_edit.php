@@ -1,5 +1,5 @@
 <?php 
-include("../connect.php"); 
+include("../connect.php");
 include("../functions.php");
 ?>
 <?php
@@ -10,9 +10,9 @@ header("Access-Control-Max-Age: 1000");
 header("Access-Control-Allow-Headers:X-Auth-Token, X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
 header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
+$_POST = json_decode(file_get_contents("php://input"),true);
 
-
-$TokenDeCode = trim($_GET['TokenDeCode']);
+$TokenDeCode = trim($_POST['TokenDeCode']);
 $TokenDeCode=jwtDecode($TokenDeCode);
 $TokenDeCode=json_decode($TokenDeCode,true);
 if($TokenDeCode['statusToken']=="no"){
@@ -20,30 +20,37 @@ echo json_encode($TokenDeCode);
 }
 
 
-$Id = trim($_GET['Id']);
+$User = trim($_POST['User']);
+$User=deCode_Local($User);
 
-$table="ropaF";
-$sql="select * from $table where ropaId='$Id' ";
+$UserID = trim($_POST['UserID']);
+$UserID=deCode_Local($UserID);
+
+$UserEmail = trim($_POST['UserEmail']);
+$UserEmail=deCode_Local($UserEmail);
+
+
+$Password = trim($_POST['Password']);
+date_default_timezone_set('Asia/Bangkok');
+$date = date('Y-m-d H:i:s');
+
+$hashed_password = password_hash($Password, PASSWORD_DEFAULT);
+$table="user";
+
+
+
+$sql="update $table set
+Password='$hashed_password'
+WHERE Email='$UserEmail'
+";	
+
 $query = $conn->query ($sql);
-$return_arr = array();
-$rowROPA= mysqli_fetch_assoc($query);
-
-$table="pdpaF";
-$sql="select * from $table where ropaId='$Id' ";
-$query = $conn->query ($sql);
-$return_arr = array();
-$rowPDPA= mysqli_fetch_assoc($query);
-
 
 $err=array();
 $err["statusToken"]="ok";
 $err["msg"]="Token completed";
-//$err["data"]=$return_arr;	
-$err["dataROPA"]=$rowROPA;	
-$err["dataPDPA"]=$rowPDPA;	
-
-echo  json_encode($err);	
-
+$err["data"]="";	
+echo  json_encode($err);
 
 ?>
 

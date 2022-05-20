@@ -2,6 +2,7 @@
 include("../connect.php"); 
 include("../functions.php");
 ?>
+
 <?php
 header('Content-Type: text/html; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
@@ -12,38 +13,35 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
 
-$TokenDeCode = trim($_GET['TokenDeCode']);
+$_POST = json_decode(file_get_contents("php://input"), true);
+$TokenDeCode = trim($_POST['TokenDeCode']);
 $TokenDeCode=jwtDecode($TokenDeCode);
 $TokenDeCode=json_decode($TokenDeCode,true);
+
 if($TokenDeCode['statusToken']=="no"){
-echo json_encode($TokenDeCode);
+    die("Token ไม่ถูกต้อง");
 }
+$id = trim($_POST['id']);
 
-
-$Id = trim($_GET['Id']);
-
-$table="ropaF";
-$sql="select * from $table where ropaId='$Id' ";
+$sql="select * from activityF where id='$id'";
 $query = $conn->query ($sql);
-$return_arr = array();
-$rowROPA= mysqli_fetch_assoc($query);
+$row_arr = array();
+while($row= mysqli_fetch_assoc($query)){
 
-$table="pdpaF";
-$sql="select * from $table where ropaId='$Id' ";
-$query = $conn->query ($sql);
-$return_arr = array();
-$rowPDPA= mysqli_fetch_assoc($query);
+// $rowAdd['no']=$row['id'];
+// $rowAdd['departmentWithAccess']=$row['department']." (".$row['personsWithAuthorizedAccess'].")";
+
+// $result = array_merge($rowAdd, $row); 
+
+array_push($row_arr,$row);	
+}
 
 
 $err=array();
 $err["statusToken"]="ok";
 $err["msg"]="Token completed";
-//$err["data"]=$return_arr;	
-$err["dataROPA"]=$rowROPA;	
-$err["dataPDPA"]=$rowPDPA;	
-
+$err["data"]=$row_arr;	
 echo  json_encode($err);	
-
 
 ?>
 

@@ -41,6 +41,8 @@ $row= mysqli_fetch_array($query);
 	$row_array['UserID'] = enCode($row['UserID']);
     $row_array['Email'] = enCode($row['Email']);
 	$row_array['Name'] = $row['Name'];
+	$row_array['Access'] = $row['Access'];
+	$row_array['Type'] = $row['Type'];
 	$row_array['Token']=jwtCreate($row['Id']);	
 
 		

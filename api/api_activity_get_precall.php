@@ -2,6 +2,7 @@
 include("../connect.php"); 
 include("../functions.php");
 ?>
+
 <?php
 header('Content-Type: text/html; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
@@ -12,38 +13,42 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
 
-$TokenDeCode = trim($_GET['TokenDeCode']);
-$TokenDeCode=jwtDecode($TokenDeCode);
-$TokenDeCode=json_decode($TokenDeCode,true);
-if($TokenDeCode['statusToken']=="no"){
-echo json_encode($TokenDeCode);
+//$_POST = json_decode(file_get_contents("php://input"), true);
+if (isset($_GET['token'])) {$token = $_GET['token'];} else { $token = "";}
+// echo $token;
+$TokenCheck = "FLwwgnYyp7bTKyMLzSfcU5DWtP3Sn7cL";
+if ($token != $TokenCheck) {
+    die("Token ไม่ถูกต้อง");
 }
 
 
-$Id = trim($_GET['Id']);
 
-$table="ropaF";
-$sql="select * from $table where ropaId='$Id' ";
-$query = $conn->query ($sql);
-$return_arr = array();
-$rowROPA= mysqli_fetch_assoc($query);
 
-$table="pdpaF";
-$sql="select * from $table where ropaId='$Id' ";
+$sql="select * from activityF where paramsUseRep='Y' order by id,document";
 $query = $conn->query ($sql);
-$return_arr = array();
-$rowPDPA= mysqli_fetch_assoc($query);
+$row_arr = array();
+$no=1;
+while($row= mysqli_fetch_assoc($query)){
+
+$rowAdd['no']=$no;
+$link="";
+$link=$row['linkGoogleform'];
+
+$rowAdd['link']=$link;
+
+
+
+$result = array_merge($rowAdd, $row); 
+$no=$no+1;
+array_push($row_arr,$result);	
+}
 
 
 $err=array();
 $err["statusToken"]="ok";
 $err["msg"]="Token completed";
-//$err["data"]=$return_arr;	
-$err["dataROPA"]=$rowROPA;	
-$err["dataPDPA"]=$rowPDPA;	
-
+$err["data"]=$row_arr;	
 echo  json_encode($err);	
-
 
 ?>
 
