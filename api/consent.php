@@ -20,6 +20,11 @@ if (isset($_POST['formGoolgeForm'])) {$formGoolgeForm = $_POST['formGoolgeForm']
 if (isset($_POST['agree'])) {$agree = $_POST['agree'];} else { $agree = "";}
 if (isset($_POST['name'])) {$name = $_POST['name'];} else { $name = "";}
 if (isset($_POST['surName'])) {$surName = $_POST['surName'];} else { $surName = "";}
+
+if ($agree == "ไม่ยินยอม") {
+    die("Token ไม่ถูกต้อง");
+}
+
 //PDPA Data
 
 if (isset($_POST['descriptionManual'])) {$descriptionManual = $_POST['descriptionManual'];} else { $descriptionManual = "";}
@@ -104,7 +109,6 @@ if ($recordFile7 != "") {$recordFile = $recordFile . "," . $recordFile7;}
 
 $TokenCheck = "FLwwgnYyp7bTKyMLzSfcU5DWtP3Sn7cL";
 
-
 if ($token == $TokenCheck) {
     $date = date('Y-m-d');
     $recordDateUpdate = date('Y-m-d H:i:s');
@@ -124,6 +128,11 @@ if ($token == $TokenCheck) {
     $activitySecurityMeasurement = $activityArray[0]['securityMeasurement'];
     $activityTypeInput = $activityArray[0]['typeInput'];
     $activityLinkGoogleform = $activityArray[0]['linkGoogleform'];
+    $activityParamsMeetingDate = $activityArray[0]['paramsMeetingDate'];
+    $activityParamsMeetingName = $activityArray[0]['paramsMeetingName'];
+    if ($activityParamsMeetingName == "") {
+        $activityParamsMeetingDate = "0000-00-00";
+    }
 
 //get Exp date;
     $activityDurationOfDataStorageExp = "";
@@ -250,6 +259,7 @@ if ($token == $TokenCheck) {
 			descriptionManual,
 			dateTime,
 			dateMeeting,
+			nameMeeting,
 			repNo,
 			titleThai,
 			titleEng,
@@ -318,7 +328,8 @@ if ($token == $TokenCheck) {
 		'" . $uuid . "',
 		'" . $descriptionManual . "',
 		'" . $recordDateUpdate . "',
-		'" . $dateMeeting . "',
+		'" . $activityParamsMeetingDate . "',
+		'" . $activityParamsMeetingName . "',
 		'" . $repNo . "',
 		'" . $titleThai . "',
 		'" . $titleEng . "',

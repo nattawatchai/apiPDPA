@@ -176,7 +176,6 @@ $row_columns['title'] = "Formats of Transfer To Data Processor";
 $row_columns['width'] = array("wpx" => 300);
 array_push($columns, $row_columns);
 
-
 ///////////seperate 32
 $row_columns['title'] = "<--- DATA --->";
 $row_columns['width'] = array("wpx" => 100);
@@ -190,6 +189,11 @@ $row_columns['style'] = array("fill" => $fgColorROPA, "font" => array("bold" => 
 array_push($columns, $row_columns);
 //33
 $row_columns['title'] = "Date Meeting";
+$row_columns['width'] = array("wpx" => 100);
+array_push($columns, $row_columns);
+
+//33
+$row_columns['title'] = "Name Meeting";
 $row_columns['width'] = array("wpx" => 100);
 array_push($columns, $row_columns);
 //33
@@ -206,7 +210,6 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "Title Eng";
 $row_columns['width'] = array("wpx" => 100);
 array_push($columns, $row_columns);
-
 
 //33
 $row_columns['title'] = "Name Thai";
@@ -258,7 +261,6 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "Marital Status";
 $row_columns['width'] = array("wpx" => 200);
 array_push($columns, $row_columns);
-
 
 //41
 $row_columns['title'] = "Weight/Height";
@@ -363,7 +365,6 @@ $row_columns['title'] = "Email";
 $row_columns['width'] = array("wpx" => 200);
 array_push($columns, $row_columns);
 
-
 //41
 $row_columns['title'] = "Licence Number";
 $row_columns['width'] = array("wpx" => 200);
@@ -457,11 +458,6 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "DataRecordEmailUpdate";
 $row_columns['width'] = array("wpx" => 200);
 array_push($columns, $row_columns);
-
-
-
-
-
 
 ///////Header TH
 $value = array();
@@ -565,6 +561,11 @@ array_push($value, $row_value);
 //
 $row_value['value'] = "วันที่ประชุม";
 array_push($value, $row_value);
+
+//
+$row_value['value'] = "ชื่องานประชุม";
+array_push($value, $row_value);
+
 //
 $row_value['value'] = "ผู้แทนขาย";
 array_push($value, $row_value);
@@ -576,7 +577,6 @@ array_push($value, $row_value);
 //
 $row_value['value'] = "คำนำหน้า (ภาษาอังกฤษ)";
 array_push($value, $row_value);
-
 
 //
 $row_value['value'] = "ชื่อ (ภาษาไทย)";
@@ -764,10 +764,6 @@ array_push($value, $row_value);
 $row_value['value'] = "DataRecordEmailUpdate";
 array_push($value, $row_value);
 
-
-
-
-
 $row_data = $value;
 array_push($data, $row_data);
 $no = 1;
@@ -775,309 +771,308 @@ while ($row = mysqli_fetch_assoc($query)) {
     $value = array();
 
 //1
-$row_value['value'] = $no;
-$row_value['style'] = array("font" => array("bold" => false));
-array_push($value, $row_value);
+    $row_value['value'] = $no;
+    $row_value['style'] = array("font" => array("bold" => false));
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['ropaId'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['ropaId'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['ropaDate'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['ropaDate'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['agree'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['agree'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['name'] ." ". $row['surName'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['name'] . " " . $row['surName'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['activityNo'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['activityNo'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['activityName'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['activityName'];
+    array_push($value, $row_value);
 //1
-// $row_value['value'] = $row['document'];
-// array_push($value, $row_value);
+    // $row_value['value'] = $row['document'];
+    // array_push($value, $row_value);
+    //1
+    $row_value['value'] = $row['personsWithAuthorizedAccess'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['personsWithAuthorizedAccess'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['objectives'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['objectives'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['legalBasis'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['legalBasis'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['durationOfDataStorage'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['durationOfDataStorage'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['durationOfDataStorageExpDate'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['durationOfDataStorageExpDate'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['contactPerson'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['contactPerson'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['securityMeasurement'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['securityMeasurement'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['severity'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['severity'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['probability'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['probability'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['priorityRiskNumber'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['priorityRiskNumber'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['directIndirectDataSubjects'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['directIndirectDataSubjects'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['formatsOfTheDirectCollection'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['formatsOfTheDirectCollection'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['privacyNotice'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['privacyNotice'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['noticeoOnIndirectCollection'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['noticeoOnIndirectCollection'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['formatsOfTheDataStored'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['formatsOfTheDataStored'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['recordsOfDataSubjectRightsUsed'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['recordsOfDataSubjectRightsUsed'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['transferOfDataToDataProcessor'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['transferOfDataToDataProcessor'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['categoriesOfDataTransferredToDataProcessor'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['categoriesOfDataTransferredToDataProcessor'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['namesOfTheDataProcessor'];
+    array_push($value, $row_value);
 //1
-$row_value['value'] = $row['namesOfTheDataProcessor'];
-array_push($value, $row_value);
-//1
-$row_value['value'] = $row['formatsofTransferToDataProcessor'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['formatsofTransferToDataProcessor'];
+    array_push($value, $row_value);
 
-$row_value['value'] = "";
-$row_value['style'] = array("alignment" => $alignmentCenter, "fill" => $fgColorSeparate);
-array_push($value, $row_value);
-
-//
-$row_value['value'] = $row['descriptionManual'];
-$row_value['style'] = "";
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['dateMeeting'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['repNo'];
-array_push($value, $row_value);
+    $row_value['value'] = "";
+    $row_value['style'] = array("alignment" => $alignmentCenter, "fill" => $fgColorSeparate);
+    array_push($value, $row_value);
 
 //
-$row_value['value'] = $row['titleThai'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['descriptionManual'];
+    $row_value['style'] = "";
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['dateMeeting'];
+    array_push($value, $row_value);
 
 //
-$row_value['value'] = $row['titleEng'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['nameMeeting'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['repNo'];
+    array_push($value, $row_value);
 
+//
+    $row_value['value'] = $row['titleThai'];
+    array_push($value, $row_value);
 
 //
-$row_value['value'] = $row['nameThai'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['surNameThai'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['nameEng'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['surNameEng'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['nickName'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['gender'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['nationality'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['citizenship'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['religion'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['age'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['dateOfBirth'];
-array_push($value, $row_value);
-//
-$row_value['value'] = $row['maritalStatus'];
-array_push($value, $row_value);
-//
-//41
-$row_value['value']= $row['weightHeight'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['carRegistrationNo'];
-array_push($value, $row_value);
-//41
-$row_value['value']= $row['fingerPrint'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['personalImage'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['employeeID'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['idCardNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['idCardIssueDate'];
-array_push($value, $row_value);
-//41
-$row_value['value']= $row['idCardExpiryDate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['passportNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['passportIssueDate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['passportExpiryDate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['educationalData'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['permanentAddress'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['presentAddress'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['addressForShipping'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['workplaceAddress'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['telephoneNo'];
-array_push($value, $row_value);
-//41
-$row_value['value']= $row['mobilePhoneNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['officePhoneNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['fulltimeCareer'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['titleEng'];
+    array_push($value, $row_value);
 
+//
+    $row_value['value'] = $row['nameThai'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['surNameThai'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['nameEng'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['surNameEng'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['nickName'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['gender'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['nationality'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['citizenship'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['religion'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['age'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['dateOfBirth'];
+    array_push($value, $row_value);
+//
+    $row_value['value'] = $row['maritalStatus'];
+    array_push($value, $row_value);
+//
+    //41
+    $row_value['value'] = $row['weightHeight'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['speciality'];
-array_push($value, $row_value);
-
-
+    $row_value['value'] = $row['carRegistrationNo'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['workPosition'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['fingerPrint'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['workStartingDate'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['personalImage'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['workResignedDate'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['employeeID'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['email'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['idCardNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['idCardIssueDate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['idCardExpiryDate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['passportNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['passportIssueDate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['passportExpiryDate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['educationalData'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['permanentAddress'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['presentAddress'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['addressForShipping'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['workplaceAddress'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['telephoneNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['mobilePhoneNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['officePhoneNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['fulltimeCareer'];
+    array_push($value, $row_value);
 
 //41
-$row_value['value'] = $row['licenceNumber'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['creditCardNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['bankAccountNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['bank'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['beneficiary'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['relationship'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['beneficiaryIDCardNo'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['beneficiaryAddress'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['proportionOfBenefit'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['covid19VaccineCertificate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['medicalCertificate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['othersDocument'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['healthInformation'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['familyMedicalHistory'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['speciality'];
+    array_push($value, $row_value);
 
 //41
-$row_value['value'] = $row['referral'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['workPosition'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['username'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['workStartingDate'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['password'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['workResignedDate'];
+    array_push($value, $row_value);
 //41
-$row_value['value'] = $row['ipAddress'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['cookieID'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['location'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['recordFile'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['recordDateUpdate'];
-array_push($value, $row_value);
-//41
-$row_value['value'] = $row['recordEmailUpdate'];
-array_push($value, $row_value);
+    $row_value['value'] = $row['email'];
+    array_push($value, $row_value);
 
+//41
+    $row_value['value'] = $row['licenceNumber'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['creditCardNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['bankAccountNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['bank'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['beneficiary'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['relationship'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['beneficiaryIDCardNo'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['beneficiaryAddress'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['proportionOfBenefit'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['covid19VaccineCertificate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['medicalCertificate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['othersDocument'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['healthInformation'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['familyMedicalHistory'];
+    array_push($value, $row_value);
 
-
+//41
+    $row_value['value'] = $row['referral'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['username'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['password'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['ipAddress'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['cookieID'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['location'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['recordFile'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['recordDateUpdate'];
+    array_push($value, $row_value);
+//41
+    $row_value['value'] = $row['recordEmailUpdate'];
+    array_push($value, $row_value);
 
     $row_data = $value;
     array_push($data, $row_data);
     $no = $no + 1;
-}    
+}
 
 // $no = 1;
 // while ($row = mysqli_fetch_assoc($query)) {
@@ -1181,7 +1176,6 @@ array_push($value, $row_value);
 //     $row_value['style'] = array("alignment" => $alignmentCenter, "fill" => $fgColorSeparate, "font" => array("bold" => true));
 //     array_push($value, $row_value);
 
-    
 //     $row_value = array();
 //     $row_value['value'] = $row['descriptionManual'];
 //     array_push($value, $row_value);
@@ -1415,7 +1409,6 @@ $excel['data'] = $data;
 
 $excelRoot = array();
 array_push($excelRoot, $excel);
-
 
 $err = array();
 $err["statusToken"] = "ok";

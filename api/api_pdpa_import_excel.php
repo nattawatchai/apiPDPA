@@ -45,11 +45,12 @@ if (is_array($Excel)) {
 
             //PDPA
             $descriptionManual = "";
+            $nameMeeting = "";
             $dateMeeting = "";
             $repNo = "";
-            $titleThai="";
-            $titleEng="";
-            $speciality="";
+            $titleThai = "";
+            $titleEng = "";
+            $speciality = "";
             $nameTH = "";
             $surNameTH = "";
             $nameENG = "";
@@ -132,6 +133,7 @@ if (is_array($Excel)) {
 
                 if (trim($key) == "Description Manual") {$descriptionManual = $value;} //1
                 if (trim($key) == "Date Meeting") {$dateMeeting = $value;} //1
+                if (trim($key) == "Name Meeting") {$nameMeeting = $value;} //1
                 if (trim($key) == "Rep No") {$repNo = $value;} //1
 
                 if (trim($key) == "Title Thai") {$titleThai = $value;} //1
@@ -339,6 +341,7 @@ if (is_array($Excel)) {
                                    dateTime,
                                    descriptionManual,
                                    dateMeeting,
+                                   nameMeeting,
                                    repNo,
                                    titleThai,
                                    titleEng,
@@ -409,6 +412,7 @@ if (is_array($Excel)) {
                                 '" . $recordDateUpdate . "',
                                 '" . $descriptionManual . "',
                                 '" . $dateMeeting . "',
+                                '" . $nameMeeting . "',
                                 '" . $repNo . "',
                                 '" . $titleThai . "',
                                 '" . $titleEng . "',
@@ -469,13 +473,13 @@ if (is_array($Excel)) {
                                 '" . $ipAddress . "',
                                 '" . $cookieID . "',
                                 '" . $location . "',
-                                '" . $recordFile . "',            
+                                '" . $recordFile . "',
                                 '" . $recordDateUpdate . "',
                                 '" . $userEmail . "'
                                 )";
 
-                                $query = $conn->query($sql);
-                                if (!$query) {echo mysqli_error();}
+                    $query = $conn->query($sql);
+                    if (!$query) {echo mysqli_error();}
 
                 }
 
