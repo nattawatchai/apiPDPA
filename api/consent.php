@@ -142,6 +142,13 @@ if ($token == $TokenCheck) {
             $activityDurationOfDataStorageExp = date('Y-m-d', strtotime("+" . $activityDurationOfDataStorageMonth . " months"));
         }
     }
+
+// set dateMeeting
+    if ($activity == "1") {
+
+        $activityParamsMeetingDate = date('Y-m-d', strtotime($dateMeeting));
+    }
+
 //get Document ID
     $ropaId = getNewID($conn, $activityDocument);
 
