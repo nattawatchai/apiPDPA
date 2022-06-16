@@ -55,7 +55,11 @@ if ($type == "0") {
     $searchRep = " and  (pdpa.repNo='$username') ";
 }
 
-$search = " (date(ropa.dateTime) BETWEEN '$sdate' and '$edate') and ropa.activityNo='$activityNo'  $searchRep";
+if ($activityNo == "1") {
+    $search = " (date(pdpa.dateMeeting) BETWEEN '$sdate' and '$edate') and ropa.activityNo='$activityNo'  $searchRep";
+} else {
+    $search = " (date(ropa.dateTime) BETWEEN '$sdate' and '$edate') and ropa.activityNo='$activityNo'  $searchRep";
+}
 
 $sql = "select ropa.dateTime as ropaDate,time(ropa.dateTime) as time,ropa.*,pdpa.*,
 ropa.recordEmailUpdate as ropaRecordEmailUpdate,
