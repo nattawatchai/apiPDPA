@@ -32,10 +32,10 @@ $searchRep = "";
 
 if ($type == "1") {
     if ($username == "VUAM01") {
-        $searchRep = " and  (pdpa.repNo='VU01' or pdpa.repNo='VU02' or pdpa.repNo='VU08' or pdpa.repNo='VU07' or pdpa.repNo='VU10' or pdpa.repNo='VU11') ";
+        $searchRep = " and  (pdpa.repNo='VUAM01' or pdpa.repNo='VU01' or pdpa.repNo='VU02' or pdpa.repNo='VU08' or pdpa.repNo='VU07' or pdpa.repNo='VU10' or pdpa.repNo='VU11') ";
     }
     if ($username == "VUAM02") {
-        $searchRep = " and  (pdpa.repNo='VU03' or pdpa.repNo='VU04' or pdpa.repNo='VU05' or pdpa.repNo='VU06' or pdpa.repNo='VU09' or pdpa.repNo='VU12') ";
+        $searchRep = " and  (pdpa.repNo='VUAM02' or pdpa.repNo='VU03' or pdpa.repNo='VU04' or pdpa.repNo='VU05' or pdpa.repNo='VU06' or pdpa.repNo='VU09' or pdpa.repNo='VU12') ";
     }
     if ($username == "VB00") {
         $searchRep = " and  (pdpa.repNo like '%VB%') ";
