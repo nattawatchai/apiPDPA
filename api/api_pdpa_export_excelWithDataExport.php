@@ -28,11 +28,19 @@ if (isset($_GET['searchROPA'])) {$searchROPA = $_GET['searchROPA'];} else { $sea
 if (isset($_GET['searchActivity'])) {$searchActivity = $_GET['searchActivity'];} else { $searchActivity = '';}
 if (isset($_GET['dateStart'])) {$dateStart = $_GET['dateStart'];} else { $dateStart = '';}
 if (isset($_GET['dateEnd'])) {$dateEnd = $_GET['dateEnd'];} else { $dateEnd = '';}
+if (isset($_GET['userEmail'])) {$userEmail = $_GET['userEmail'];} else { $userEmail = '';}
+$userEmail=deCode_Local($userEmail);
+$userAccess = getUserAccess($conn,$userEmail);
+$userAccess = $userAccess[0]['Access'];
 
 $table0 = "ropaF";
 $table1 = "pdpaF";
 $search = " (date(ropa.dateTime) BETWEEN '$dateStart' and '$dateEnd') and  ";
 $search = $search . " ropa.name like '%$searchName%' and ropa.activityName like '%$searchActivity%' and ropa.ropaId like'%$searchROPA%'";
+if($userAccess!=""){
+  $search= $search ." and (ropa.personsWithAuthorizedAccess like '%$userAccess%' or ropa.personsWithAuthorizedAccess like '%ALL%') ";
+}
+
 
 $sql = "select ropa.dateTime as ropaDate,time(ropa.dateTime) as time,ropa.*,pdpa.*,
 ropa.recordEmailUpdate as ropaRecordEmailUpdate,
@@ -44,6 +52,8 @@ left join $table1 pdpa on ropa.ropaId=pdpa.ropaId
 where $search
 order by ropa.dateTime,ropa.ropaId
 ";
+
+
 
 // $sql = "select ropaId,date from $table0 ropa limit 5";
 $query = $conn->query($sql);
