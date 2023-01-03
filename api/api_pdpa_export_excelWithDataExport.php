@@ -66,6 +66,12 @@ $fgColorSeparate = array("fgColor" => array("rgb" => "9999FF"));
 $fgColorInsert = array("fgColor" => array("rgb" => "6EEB6A"));
 $fgColorUpdate = array("fgColor" => array("rgb" => "CBFD92"));
 
+
+$fgColorDS = array("fgColor" => array("rgb" => "93dc41"));
+$fgColorTF = array("fgColor" => array("rgb" => "c4f987"));
+$fgColorDB = array("fgColor" => array("rgb" => "d2f3ad"));
+
+
 //1
 $row_columns['title'] = "No";
 $row_columns['width'] = array("wpx" => 50);
@@ -166,11 +172,50 @@ $row_columns['width'] = array("wpx" => 200);
 array_push($columns, $row_columns);
 
 //24
-$row_columns['title'] = "Records Of Data Subject Rights Used";
+// $row_columns['title'] = "Records Of Data Subject Rights Used";
+// $row_columns['width'] = array("wpx" => 300);
+// array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Name of data subject";
+$row_columns['style'] = array("fill" => $fgColorDS, "font" => array("bold" => true));
 $row_columns['width'] = array("wpx" => 300);
 array_push($columns, $row_columns);
+
+
+$row_columns['title'] = "DS request date";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Used right";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Request No";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Decision result";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Details";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Reason";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DS Date of response";
+$row_columns['width'] = array("wpx" => 300);
+array_push($columns, $row_columns);
+
+
+
+
 //25
 $row_columns['title'] = "Transfer Of Data To Data Processor";
+$row_columns['style'] = array("fill" => $fgColorTF, "font" => array("bold" => true));
 $row_columns['width'] = array("wpx" => 300);
 array_push($columns, $row_columns);
 //26
@@ -185,6 +230,44 @@ array_push($columns, $row_columns);
 $row_columns['title'] = "Formats of Transfer To Data Processor";
 $row_columns['width'] = array("wpx" => 300);
 array_push($columns, $row_columns);
+
+
+
+
+$row_columns['title'] = "DB Name of Data Breaching";
+$row_columns['width'] = array("wpx" => 200);
+$row_columns['style'] = array("fill" => $fgColorDB, "font" => array("bold" => true));
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Date";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Details";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Risk Assessment";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Measurement";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Compensation";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Date of report to Regulator";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+$row_columns['title'] = "DB Date of inform to DS";
+$row_columns['width'] = array("wpx" => 200);
+array_push($columns, $row_columns);
+
+
 
 ///////////seperate 32
 $row_columns['title'] = "<--- DATA --->";
@@ -545,10 +628,41 @@ array_push($value, $row_value);
 $row_value['value'] = "เก็บข้อมูลในรูปแบบ";
 array_push($value, $row_value);
 //
-$row_value['value'] = "บันทึกการใช้สิทธิของเจ้าของข้อมูล";
+// $row_value['value'] = "บันทึกการใช้สิทธิของเจ้าของข้อมูล";
+// array_push($value, $row_value);
+
+
+$row_value['value'] = "ชื่อเจ้าของข้อมูลส่วนบุคคล";
+$row_value['style'] = array("fill" => $fgColorDS, "font" => array("bold" => true));
 array_push($value, $row_value);
+
+$row_value['value'] = "วันที่รับเรื่อง";
+array_push($value, $row_value);
+
+$row_value['value'] = "สิทธิที่ขอใช้";
+array_push($value, $row_value);
+
+$row_value['value'] = "เลขที่ใบคำร้อง";
+array_push($value, $row_value);
+
+$row_value['value'] = "ผลการตัดสินใจ";
+array_push($value, $row_value);
+
+$row_value['value'] = "รายละเอียดการดำเนินการ
+(หากดำเนินการตามการร้องขอ)";
+array_push($value, $row_value);
+
+$row_value['value'] = " เหตุผล
+(หากไม่ดำเนินการตามการร้องขอ)";
+array_push($value, $row_value);
+
+$row_value['value'] = "วันที่แจ้งผล";
+array_push($value, $row_value);
+
+
 //
 $row_value['value'] = "การส่งต่อข้อมูลให้ผู้ประมวลผลข้อมูล";
+$row_value['style'] = array("fill" => $fgColorTF, "font" => array("bold" => true));
 array_push($value, $row_value);
 //
 $row_value['value'] = "วิธีการส่งต่อข้อมูลให้ผู้ประมวลผลข้อมูล";
@@ -559,6 +673,35 @@ array_push($value, $row_value);
 //
 $row_value['value'] = "รูปแบบเอกรูปแบบข้อมูลที่ถูกส่งให้ผู้ประมวลผลข้อมูลสาร";
 array_push($value, $row_value);
+
+
+
+$row_value['value'] = "ชื่อการละเมิดข้อมูลส่วนบุคคล";
+$row_value['style'] = array("fill" => $fgColorDB, "font" => array("bold" => true));
+array_push($value, $row_value);
+
+$row_value['value'] = "วันที่รับเรื่อง";
+array_push($value, $row_value);
+
+$row_value['value'] = "รายละเอียดเหตุการณ์";
+array_push($value, $row_value);
+
+$row_value['value'] = "ผลการประเมินความเสี่ยง";
+array_push($value, $row_value);
+
+$row_value['value'] = "มาตรการยับยั้งเหตุฯ";
+array_push($value, $row_value);
+
+$row_value['value'] = "มาตรการเยียวยาแก่เจ้าของข้อมูลส่วนบุคคล";
+array_push($value, $row_value);
+
+$row_value['value'] = "วันที่แจ้งเหตุแก่สคบ.";
+array_push($value, $row_value);
+
+$row_value['value'] = "วันที่แจ้งแก่เจ้าของข้อมูลฯ";
+array_push($value, $row_value);
+
+
 
 $row_value['value'] = "ข้อมูล";
 $row_value['style'] = array("alignment" => $alignmentCenter, "fill" => $fgColorSeparate, "font" => array("bold" => true));
@@ -851,8 +994,36 @@ while ($row = mysqli_fetch_assoc($query)) {
     $row_value['value'] = $row['formatsOfTheDataStored'];
     array_push($value, $row_value);
 //1
-    $row_value['value'] = $row['recordsOfDataSubjectRightsUsed'];
+    // $row_value['value'] = $row['recordsOfDataSubjectRightsUsed'];
+    // array_push($value, $row_value);
+
+
+
+    $row_value['value'] = $row['DS_Name_of_data_subject'];
     array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_request_date'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_Used_right'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_Request_No'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_Decision_result'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_Details'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DS_Reason'];
+    array_push($value, $row_value);
+    
+    $row_value['value'] = $row['DS_Date_of_response'];
+    array_push($value, $row_value);
+
+
 //1
     $row_value['value'] = $row['transferOfDataToDataProcessor'];
     array_push($value, $row_value);
@@ -865,6 +1036,36 @@ while ($row = mysqli_fetch_assoc($query)) {
 //1
     $row_value['value'] = $row['formatsofTransferToDataProcessor'];
     array_push($value, $row_value);
+
+
+
+
+
+    $row_value['value'] = $row['DB_name_of_data_breaching'];
+    array_push($value, $row_value);
+    
+    $row_value['value'] = $row['DB_Date'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_Details'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_risk_assessment'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_measurement'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_compensation'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_date_of_report_to_regulator'];
+    array_push($value, $row_value);
+
+    $row_value['value'] = $row['DB_date_of_inform_to_DS'];
+    array_push($value, $row_value);
+
+
 
     $row_value['value'] = "";
     $row_value['style'] = array("alignment" => $alignmentCenter, "fill" => $fgColorSeparate);
