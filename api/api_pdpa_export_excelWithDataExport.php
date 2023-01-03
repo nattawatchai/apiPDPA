@@ -69,7 +69,7 @@ $fgColorUpdate = array("fgColor" => array("rgb" => "CBFD92"));
 
 $fgColorDS = array("fgColor" => array("rgb" => "93dc41"));
 $fgColorTF = array("fgColor" => array("rgb" => "c4f987"));
-$fgColorDB = array("fgColor" => array("rgb" => "d2f3ad"));
+$fgColorDB = array("fgColor" => array("rgb" => "def0ca"));
 
 
 //1
@@ -1019,7 +1019,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
     $row_value['value'] = $row['DS_Reason'];
     array_push($value, $row_value);
-    
+
     $row_value['value'] = $row['DS_Date_of_response'];
     array_push($value, $row_value);
 
